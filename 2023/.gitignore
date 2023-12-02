@@ -1,0 +1,6 @@
+debug/
+target/
+result
+*.swp
+.direnv/
+**/*.rs.bk
