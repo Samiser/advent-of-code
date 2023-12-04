@@ -33,22 +33,16 @@ impl Cubes {
     fn parse_segment(segment: &str) -> Cubes {
         let parts: Vec<&str> = segment.split_whitespace().collect();
 
-        match parts[..] {
-            [count, "red"] => Cubes {
-                red: count.parse::<u32>().unwrap(),
-                green: 0,
-                blue: 0,
-            },
-            [count, "green"] => Cubes {
-                red: 0,
-                green: count.parse::<u32>().unwrap(),
-                blue: 0,
-            },
-            [count, "blue"] => Cubes {
-                red: 0,
-                green: 0,
-                blue: count.parse::<u32>().unwrap(),
-            },
+        match parts.as_slice() {
+            [count_str, color] => {
+                let count = count_str.parse::<u32>().unwrap();
+                match *color {
+                    "red" => Cubes { red: count, green: 0, blue: 0, },
+                    "green" => Cubes { red: 0, green: count, blue: 0, },
+                    "blue" => Cubes { red: 0, green: 0, blue: count, },
+                    _ => Cubes::default(),
+                }
+            }
             _ => Cubes::default(),
         }
     }
