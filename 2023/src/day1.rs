@@ -1,13 +1,5 @@
 const NUMBERS: [&str; 9] = [
-    "one",
-    "two",
-    "three",
-    "four",
-    "five",
-    "six",
-    "seven",
-    "eight",
-    "nine",
+    "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
 ];
 
 fn parse_1(s: &str) -> u32 {
@@ -17,7 +9,8 @@ fn parse_1(s: &str) -> u32 {
 }
 
 fn check_slice(slice: &str) -> Option<u32> {
-    NUMBERS.iter()
+    NUMBERS
+        .iter()
         .enumerate()
         .find(|(_, pattern)| slice.starts_with(*pattern))
         .map(|(i, _)| i as u32 + 1)
@@ -34,10 +27,7 @@ fn sum_lines<F>(input: &str, parse: F) -> u32
 where
     F: Fn(&str) -> u32,
 {
-    input
-        .lines()
-        .map(parse)
-        .sum()
+    input.lines().map(parse).sum()
 }
 
 pub fn run(input: &str) {

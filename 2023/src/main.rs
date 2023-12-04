@@ -1,4 +1,5 @@
 mod day1;
+mod day2;
 
 use std::env;
 use std::fs;
@@ -14,6 +15,7 @@ fn main() {
 
     match config.day.as_str() {
         "one" => day1::run(&config.input),
+        "two" => day2::run(&config.input),
         _ => println!("Day not recognized"),
     }
 }
