@@ -34,10 +34,22 @@ impl Cubes {
         let parts: Vec<&str> = segment.split_whitespace().collect();
 
         match parts[..] {
-            [count, "red"] => Cubes { red: count.parse::<u32>().unwrap(), green: 0, blue: 0, },
-            [count, "green"] => Cubes { red: 0, green: count.parse::<u32>().unwrap(), blue: 0, },
-            [count, "blue"] => Cubes { red: 0, green: 0, blue: count.parse::<u32>().unwrap(), },
-            _ => Cubes { red: 0, green: 0, blue: 0, },
+            [count, "red"] => Cubes {
+                red: count.parse::<u32>().unwrap(),
+                green: 0,
+                blue: 0,
+            },
+            [count, "green"] => Cubes {
+                red: 0,
+                green: count.parse::<u32>().unwrap(),
+                blue: 0,
+            },
+            [count, "blue"] => Cubes {
+                red: 0,
+                green: 0,
+                blue: count.parse::<u32>().unwrap(),
+            },
+            _ => Cubes::default(),
         }
     }
 
@@ -73,18 +85,13 @@ fn part_one(input: &str) {
 }
 
 fn min_cubes_power(game: Vec<Cubes>) -> u32 {
-    game
-        .into_iter()
+    game.into_iter()
         .fold(Cubes::default(), |acc, cubes| Cubes::max(&acc, &cubes))
         .product()
 }
 
 fn part_two(input: &str) {
-    let total: u32 = input
-        .lines()
-        .map(parse_line)
-        .map(min_cubes_power)
-        .sum();
+    let total: u32 = input.lines().map(parse_line).map(min_cubes_power).sum();
 
     println!("part 2 sum: {}", total);
 }
