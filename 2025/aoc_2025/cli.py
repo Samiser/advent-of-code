@@ -21,7 +21,7 @@ def main() -> None:
         "--inputs",
         type=Path,
         default=Path("inputs"),
-        help="path to the input files directory",
+        help="path to the input files directory (default: './input')",
     )
 
     args = parser.parse_args(namespace=Args)
