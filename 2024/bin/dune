@@ -1,0 +1,4 @@
+(executable
+ (public_name advent_2024)
+ (name main)
+ (libraries core core_unix.command_unix advent_of_code))

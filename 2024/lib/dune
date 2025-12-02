@@ -1,0 +1,6 @@
+(library
+ (name advent_of_code)
+ (libraries async core core_unix.filename_unix re)
+ (inline_tests)
+ (preprocess
+  (pps ppx_jane ppx_expect)))

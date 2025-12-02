@@ -1,0 +1,39 @@
+# Advent of code input files
+input/
+
+# Dune build directory
+_build/
+
+# Nix build artifacts
+.result
+result
+logs/
+
+# OCaml build artifacts
+*.cmi
+*.cmx
+*.cmo
+*.o
+*.a
+*.cmxa
+*.cmxs
+*.so
+*.byte
+*.native
+
+# Editor/IDE files
+*.swp
+*.swo
+*.vim
+*.bak
+*.tmp
+
+# Generated test outputs
+*.output
+
+# Logs
+*.log
+
+# Direnv
+.envrc
+.direnv/

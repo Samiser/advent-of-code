@@ -1,0 +1,30 @@
+name: Nix Build and Flake Check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  nix-build-and-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up Nix
+      - name: Set up Nix
+        uses: cachix/install-nix-action@v22
+        with:
+          install_url: https://releases.nixos.org/nix/nix-2.15.1/install
+
+      # Run nix flake check
+      - name: Run nix flake check
+        run: nix flake check
+
+      # Run nix build
+      - name: Run nix build
+        run: nix build
