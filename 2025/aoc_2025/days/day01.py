@@ -1,11 +1,25 @@
+def parse_instruction(instruction: str) -> int:
+    return int(instruction[1:]) * (1 if instruction[:1] == "R" else -1)
+
+
 def rotate(current_position: int, instruction: str) -> int:
-    direction = instruction[:1]
-    count = int(instruction[1:])
+    rotation = parse_instruction(instruction)
 
-    if direction == "L":
-        count *= -1
+    return (current_position + rotation) % 100
 
-    return (current_position + count) % 100
+
+def count_zero_passes(current_position: int, instruction: str) -> int:
+    rotation = parse_instruction(instruction)
+
+    if rotation >= 0:
+        return (current_position + rotation) // 100
+
+    hit = current_position if current_position > 0 else 100
+
+    if abs(rotation) < hit:
+        return 0
+
+    return 1 + (abs(rotation) - hit) // 100
 
 
 def part1(data: str) -> str:
@@ -21,4 +35,11 @@ def part1(data: str) -> str:
 
 
 def part2(data: str) -> str:
-    return "todo!"
+    position = 50
+    zero_passes = 0
+
+    for instruction in data.splitlines():
+        zero_passes += count_zero_passes(position, instruction)
+        position = rotate(position, instruction)
+
+    return str(zero_passes)
