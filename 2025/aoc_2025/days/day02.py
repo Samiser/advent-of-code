@@ -1,46 +1,37 @@
-import textwrap
-from itertools import groupby
+from typing import Callable
+
+IdValidator = Callable[[str], bool]
 
 
-def get_invalid_ids(start: int, end: int) -> list[int]:
-    invalid: list[int] = []
-    for id in range(start, end + 1):
-        str_id = str(id)
-        if (
-            len(str_id) % 2 == 0
-            and str_id[: len(str_id) // 2] == str_id[len(str_id) // 2 :]
-        ):
-            invalid.append(id)
-    return invalid
+def is_repeated_block(str_id: str, size: int) -> bool:
+    length = len(str_id)
+    if length % size != 0:
+        return False
+
+    block = str_id[:size]
+    return block * (length // size) == str_id
 
 
-def get_invalid_ids_2(start: int, end: int) -> list[int]:
-    invalid: list[int] = []
-    for id in range(start, end + 1):
-        str_id = str(id)
-        for i in range(1, len(str_id)):
-            if len(str_id) % i == 0:
-                groups = [int(x) for x in textwrap.wrap(str_id, i)]
-                grouped = groupby(groups, int)
-                if len(list(grouped)) <= 1:
-                    invalid.append(id)
-                    break
-    return invalid
+def count_invalid(data: str, is_invalid: IdValidator):
+    total = 0
+
+    for start, end in (s.split("-") for s in data.split(",")):
+        for id in range(int(start), int(end) + 1):
+            if is_invalid(str(id)):
+                total += id
+
+    return str(total)
 
 
 def part1(data: str) -> str:
-    total = 0
+    def has_pair(id: str) -> bool:
+        return len(id) % 2 == 0 and is_repeated_block(id, len(id) // 2)
 
-    for start, end in [s.split("-") for s in data.split(",")]:
-        total += sum(get_invalid_ids(int(start), int(end)))
-
-    return str(total)
+    return count_invalid(data, has_pair)
 
 
 def part2(data: str) -> str:
-    total = 0
+    def has_any_repeated_block(id: str) -> bool:
+        return any(is_repeated_block(id, size) for size in range(1, len(id)))
 
-    for start, end in [s.split("-") for s in data.split(",")]:
-        total += sum(get_invalid_ids_2(int(start), int(end)))
-
-    return str(total)
+    return count_invalid(data, has_any_repeated_block)
