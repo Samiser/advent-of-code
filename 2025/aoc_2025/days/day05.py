@@ -36,3 +36,7 @@ def part1(data: str) -> str:
 
 def part2(data: str) -> str:
     return day5(data)[1]
+
+
+def solve(data: str) -> str:
+    return "\n".join(day5(data))

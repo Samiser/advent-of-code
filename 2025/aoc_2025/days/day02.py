@@ -35,3 +35,7 @@ def part2(data: str) -> str:
         return any(is_repeated_block(id, size) for size in range(1, len(id)))
 
     return count_invalid(data, has_any_repeated_block)
+
+
+def solve(data: str) -> str:
+    return "\n".join((part1(data), part2(data)))

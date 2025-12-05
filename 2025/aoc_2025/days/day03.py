@@ -14,13 +14,17 @@ def banks_to_joltages(banks: list[str], size: int):
     return [joltage([int(x) for x in line], size) for line in banks]
 
 
-def solve(data: str, size: int):
+def sum_joltages(data: str, size: int):
     return str(sum(banks_to_joltages(data.splitlines(), size)))
 
 
 def part1(data: str) -> str:
-    return solve(data, 2)
+    return sum_joltages(data, 2)
 
 
 def part2(data: str) -> str:
-    return solve(data, 12)
+    return sum_joltages(data, 12)
+
+
+def solve(data: str) -> str:
+    return "\n".join((part1(data), part2(data)))

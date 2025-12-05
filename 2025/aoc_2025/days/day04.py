@@ -48,3 +48,7 @@ def part2(data: str) -> str:
         removed_count, diagram = remove_rolls(diagram)
 
     return str(total_removed)
+
+
+def solve(data: str) -> str:
+    return "\n".join((part1(data), part2(data)))
