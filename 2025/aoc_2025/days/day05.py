@@ -1,4 +1,7 @@
-def solve(data: str) -> tuple[str, str]:
+from bisect import bisect_right
+
+
+def day5(data: str) -> tuple[str, str]:
     raw_id_ranges, raw_ids = [section.splitlines() for section in data.split("\n\n")]
     count = 0
 
@@ -18,10 +21,9 @@ def solve(data: str) -> tuple[str, str]:
             merged.append(r)
 
     for id in ids:
-        for id_range in id_ranges:
-            if id in id_range:
-                count += 1
-                break
+        pos = bisect_right(merged, id, key=lambda r: r.start) - 1
+        if pos >= 0 and id in merged[pos]:
+            count += 1
 
     id_count: int = sum(len(r) for r in merged)
 
@@ -29,8 +31,8 @@ def solve(data: str) -> tuple[str, str]:
 
 
 def part1(data: str) -> str:
-    return solve(data)[0]
+    return day5(data)[0]
 
 
 def part2(data: str) -> str:
-    return solve(data)[1]
+    return day5(data)[1]
