@@ -15,16 +15,8 @@ def banks_to_joltages(banks: list[str], size: int):
 
 
 def sum_joltages(data: str, size: int):
-    return str(sum(banks_to_joltages(data.splitlines(), size)))
+    return sum(banks_to_joltages(data.splitlines(), size))
 
 
-def part1(data: str) -> str:
-    return sum_joltages(data, 2)
-
-
-def part2(data: str) -> str:
-    return sum_joltages(data, 12)
-
-
-def solve(data: str) -> str:
-    return "\n".join((part1(data), part2(data)))
+def solve(data: str) -> tuple[int, int]:
+    return sum_joltages(data, 2), sum_joltages(data, 12)

@@ -1,4 +1,4 @@
-from aoc_2025.days.day01 import part1, part2, count_zero_passes
+from aoc_2025.days.day01 import solve, count_zero_passes
 
 input = """\
 L68
@@ -14,11 +14,11 @@ L82"""
 
 
 def test_part1() -> None:
-    assert part1(input.strip()) == "3"
+    assert solve(input.strip())[0] == 3
 
 
 def test_part2() -> None:
-    assert part2(input.strip()) == "6"
+    assert solve(input.strip())[1] == 6
 
 
 def test_part2_edge() -> None:

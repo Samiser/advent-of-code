@@ -34,21 +34,14 @@ def remove_rolls(diagram: Diagram) -> tuple[int, Diagram]:
     return paper, illustration
 
 
-def part1(data: str) -> str:
-    count, _diagram = remove_rolls([list(line) for line in data.splitlines()])
-    return str(count)
-
-
-def part2(data: str) -> str:
+def solve(data: str) -> tuple[int, int]:
     total_removed = 0
-    removed_count, diagram = remove_rolls([list(line) for line in data.splitlines()])
+    first_removed, diagram = remove_rolls([list(line) for line in data.splitlines()])
+
+    removed_count = first_removed
 
     while removed_count:
         total_removed += removed_count
         removed_count, diagram = remove_rolls(diagram)
 
-    return str(total_removed)
-
-
-def solve(data: str) -> str:
-    return "\n".join((part1(data), part2(data)))
+    return first_removed, total_removed

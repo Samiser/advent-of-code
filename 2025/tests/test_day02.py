@@ -1,4 +1,4 @@
-from aoc_2025.days.day02 import part1, part2
+from aoc_2025.days.day02 import solve
 
 input = "11-22,95-115,998-1012,1188511880-1188511890,222220-222224,\
 1698522-1698528,446443-446449,38593856-38593862,565653-565659,\
@@ -6,8 +6,8 @@ input = "11-22,95-115,998-1012,1188511880-1188511890,222220-222224,\
 
 
 def test_part1() -> None:
-    assert part1(input.strip()) == "1227775554"
+    assert solve(input.strip())[0] == 1227775554
 
 
 def test_part2() -> None:
-    assert part2(input.strip()) == "4174379265"
+    assert solve(input.strip())[1] == 4174379265

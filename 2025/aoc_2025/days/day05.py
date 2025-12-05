@@ -1,7 +1,7 @@
 from bisect import bisect_right
 
 
-def day5(data: str) -> tuple[str, str]:
+def solve(data: str) -> tuple[int, int]:
     raw_id_ranges, raw_ids = [section.splitlines() for section in data.split("\n\n")]
     count = 0
 
@@ -27,16 +27,4 @@ def day5(data: str) -> tuple[str, str]:
 
     id_count: int = sum(len(r) for r in merged)
 
-    return str(count), str(id_count)
-
-
-def part1(data: str) -> str:
-    return day5(data)[0]
-
-
-def part2(data: str) -> str:
-    return day5(data)[1]
-
-
-def solve(data: str) -> str:
-    return "\n".join(day5(data))
+    return count, id_count

@@ -18,7 +18,7 @@ def has_any_repeated_block(s: str) -> bool:
     return False
 
 
-def count_invalid(data: str) -> tuple[str, str]:
+def solve(data: str) -> tuple[int, int]:
     pair_total = 0
     repeated_block_total = 0
 
@@ -32,16 +32,4 @@ def count_invalid(data: str) -> tuple[str, str]:
             if has_any_repeated_block(s):
                 repeated_block_total += n
 
-    return str(pair_total), str(repeated_block_total)
-
-
-def part1(data: str) -> str:
-    return count_invalid(data)[0]
-
-
-def part2(data: str) -> str:
-    return count_invalid(data)[1]
-
-
-def solve(data: str) -> str:
-    return "\n".join(count_invalid(data))
+    return pair_total, repeated_block_total

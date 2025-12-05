@@ -6,7 +6,7 @@ def count_zero_passes(current_position: int, rotation: int) -> int:
     return (current_position + rotation) // 100
 
 
-def day1(data: str) -> tuple[int, int]:
+def solve(data: str) -> tuple[int, int]:
     position = 50
     p1_count = 0
     p2_count = 0
@@ -21,15 +21,3 @@ def day1(data: str) -> tuple[int, int]:
             p1_count += 1
 
     return p1_count, p2_count
-
-
-def part1(data: str) -> str:
-    return str(day1(data)[0])
-
-
-def part2(data: str) -> str:
-    return str(day1(data)[1])
-
-
-def solve(data: str) -> str:
-    return "\n".join(str(n) for n in day1(data))
