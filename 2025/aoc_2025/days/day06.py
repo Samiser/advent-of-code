@@ -3,20 +3,18 @@ import math
 
 def calculate(value_lines: list[list[int]], operators: list[str]) -> int:
     total = 0
-    for i, operation in enumerate(operators):
-        if operation == "+":
-            total += sum(value_lines[i])
-        elif operation == "*":
-            total += math.prod(value_lines[i])
+    for values, operator in zip(value_lines, operators):
+        if operator == "+":
+            total += sum(values)
+        elif operator == "*":
+            total += math.prod(values)
     return total
 
 
 def part1(lines: list[str], operators: list[str]) -> int:
-    value_lines: list[list[int]] = [
-        [int(val) for val in line.split()] for line in lines
-    ]
+    rows: list[list[int]] = [[int(val) for val in line.split()] for line in lines]
 
-    value_lines = [list(line) for line in zip(*reversed(value_lines))]
+    value_lines: list[list[int]] = [list(line) for line in zip(*reversed(rows))]
 
     return calculate(value_lines, operators)
 
