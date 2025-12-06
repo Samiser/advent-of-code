@@ -9,7 +9,6 @@ description = "My advent of code efforts for 2025"
 authors = []
 requires-python = ">=3.13"
 dependencies = [
-    "expecttest",
     "mypy",
     "pytest"
 ]
