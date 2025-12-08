@@ -23,4 +23,4 @@ def test_part1() -> None:
 
 
 def test_part2() -> None:
-    assert solve(input.strip())[1] == 1
+    assert solve(input.strip())[1] == 40
