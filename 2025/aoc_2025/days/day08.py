@@ -30,8 +30,6 @@ class DSU:
 
 
 def solve(data: str) -> tuple[int, int]:
-    limit = 10 if "pytest" in modules else 1000
-
     coords: list[tuple[int, int, int]] = [
         (x, y, z)
         for line in data.splitlines()
@@ -49,12 +47,13 @@ def solve(data: str) -> tuple[int, int]:
     last_two: tuple[int, int] = 0, 0
     largest_three: list[int] = []
 
+    limit = 10 if "pytest" in modules else 1000
     for k in range(len(edges)):
         _, i, j = edges[k]
         dsu.union(i, j)
         roots = {dsu.find(i) for i in range(n)}
 
-        if k == limit:  # part 1
+        if k + 1 == limit:  # part 1
             sizes = [dsu.size[root] for root in roots]
             sizes.sort()
             largest_three = sizes[-3:]
